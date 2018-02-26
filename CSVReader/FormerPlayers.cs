@@ -8,11 +8,11 @@ using System.Threading;
 
 namespace CSVReader
 {
-    class PlayerDescription
+    class FormerPlayers
     {
         static Realm _realm;
 
-        static void Main(string[] args)
+        static void o(string[] args)
         {
             SetupRealm();
             while (true)
@@ -24,7 +24,7 @@ namespace CSVReader
         public static async void SetupRealm()
         {
             var user = await User.LoginAsync(Credentials.UsernamePassword("realm-admin", "bachelor", false), new Uri($"http://13.59.205.12:9080"));
-            SyncConfiguration config = new SyncConfiguration(user, new Uri($"realm://13.59.205.12:9080/data/players"));
+            SyncConfiguration config = new SyncConfiguration(user, new Uri($"realm://13.59.205.12:9080/data/formerPlayers"));
 
 
             _realm = Realm.GetInstance(config);
@@ -34,8 +34,7 @@ namespace CSVReader
                 _realm.RemoveAll();
             });
 
-            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Scripts\\playersdescription.csv").Split("::::");
-            Console.WriteLine(content.Count());
+            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Scripts\\formerplayers.csv").Split("::::");
             string[] csv = new string[1];
             int i = 0;
             foreach (var item in content)
@@ -52,12 +51,6 @@ namespace CSVReader
 
                     for (int j = 0; j < csv.Count(); j++)
                     {
-                        Console.WriteLine(csv[j].Trim());
-                        Console.WriteLine(temp[j]);
-                        if(temp[j].ElementAt(0) == '\"')
-                        {
-                            temp[j] = temp[j].Substring(1, temp[j].Length - 2);
-                        }
                         switch (csv[j].Trim())
                         {
                             case "Name,":
@@ -68,7 +61,6 @@ namespace CSVReader
                                 break;
                             case "Position:":
                                 playerModel.Position = temp[j].Trim();
-                                Console.WriteLine(temp[j].Trim());
                                 break;
                             case "Højde:":
                                 playerModel.Height = temp[j].Trim();

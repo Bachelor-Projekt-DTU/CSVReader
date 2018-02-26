@@ -5,9 +5,9 @@ C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\bin\Debug\netcoreapp2.0\CSVReader
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\bin\Debug\netcoreapp2.0\CSVReader.pdb
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\bin\Debug\netcoreapp2.0\Model.dll
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\bin\Debug\netcoreapp2.0\Model.pdb
-C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.csprojResolveAssemblyReference.cache
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.csproj.CoreCompileInputs.cache
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.AssemblyInfoInputs.cache
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.AssemblyInfo.cs
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.dll
 C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.pdb
+C:\Users\Hadi\Source\Repos\CSVReader\CSVReader\obj\Debug\netcoreapp2.0\CSVReader.csprojResolveAssemblyReference.cache
