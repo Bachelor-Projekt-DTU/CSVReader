@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void Main(string[] args)
+        static void p(string[] args)
         {
             SetupRealm();
             while (true)
@@ -34,7 +34,7 @@ namespace CSVReader
                 _realm.RemoveAll();
             });
 
-            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Scripts\\playersdescription.csv").Split("::::");
+            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Webscraping_Scripts\\playersdescription.csv").Split("::::");
             Console.WriteLine(content.Count());
             string[] csv = new string[1];
             int i = 0;

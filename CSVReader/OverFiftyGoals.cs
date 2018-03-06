@@ -32,7 +32,7 @@ namespace CSVReader
                 _realm.RemoveAll();
             });
 
-            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Scripts\\overfiftygoals.csv").Split("\n");
+            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Webscraping_Scripts\\overfiftygoals.csv").Split("\n");
             string[] csv = new string[1];
 
             foreach (var item in content)
