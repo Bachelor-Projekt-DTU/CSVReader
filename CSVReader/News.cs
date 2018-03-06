@@ -50,7 +50,8 @@ namespace CSVReader
                 newsModel.ImageURL = itemsplit[3];
                 Console.WriteLine(itemsplit[4]);
                 newsModel.SmallText = itemsplit[4];
-                newsModel.ArticleId = itemsplit[5];
+                newsModel.ArticleId = ""+ (Int32.Parse(itemsplit[5]) -1);
+                Console.WriteLine(itemsplit[5]);
 
                 _realm.Write(() =>
                 {
