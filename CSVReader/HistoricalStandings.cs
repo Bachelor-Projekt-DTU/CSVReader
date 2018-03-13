@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void o(string[] args)
+        static void Main(string[] args)
         {
             SetupRealm();
             while (true)
@@ -34,15 +34,13 @@ namespace CSVReader
             });
 
             var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Webscraping_Scripts\\historicalstandings.csv").Trim().Split(",,,,,,,");
-            string[] csv = new string[1];
             content = content.Skip(3).ToArray();
             int i = 0;
-
+            string tournamentName = "";
             foreach (var item in content)
             {
                 if (item.Trim() == "") continue;
                 var item2 = item.Trim();
-
                 if (item2.Trim() == "") continue;
                 i++;
 
@@ -53,13 +51,13 @@ namespace CSVReader
                     HistoricalStandingModel historicalStandingModel = new HistoricalStandingModel();
                     if (item4.Trim() == "") continue;
 
-                    if (i % 2 == 1) { }
+                    if (i % 2 == 1) { tournamentName = item4; }
                     else
                     {
                         var item5 = item4.Trim().Split(",");
                         try
                         {
-                            historicalStandingModel.Points = item5[7];
+                            historicalStandingModel.TournamentName = tournamentName;
                             historicalStandingModel.Year = item5[0];
                             historicalStandingModel.Standing = item5[1];
                             historicalStandingModel.Games = item5[2];
@@ -67,6 +65,7 @@ namespace CSVReader
                             historicalStandingModel.Draws = item5[4];
                             historicalStandingModel.Losses = item5[5];
                             historicalStandingModel.Score = item5[6];
+                            historicalStandingModel.Points = item5[7];
                         }
                         catch (Exception)
                         {
