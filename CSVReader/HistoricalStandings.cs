@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void Main(string[] args)
+        static void ae(string[] args)
         {
             SetupRealm();
             while (true)

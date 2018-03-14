@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void q(string[] args)
+        static void Main(string[] args)
         {
             SetupRealm();
             while (true)
@@ -54,7 +54,21 @@ namespace CSVReader
                         switch (csv[j].Trim())
                         {
                             case "Name,":
-                                playerModel.Name = temp[j].Substring(0, temp[j].Count() - 1).Trim();
+                                var temp1 = temp[j].Substring(0, temp[j].Count() - 1).Trim();
+                                if(temp1.Contains(". "))
+                                {
+                                    playerModel.Name = temp1.Split(". ")[1];
+                                    playerModel.Number = temp1.Split(". ")[0];
+                                } else if (temp1.Length > 0 && temp1[0] == '\"')
+                                {
+                                    temp1 = temp1.Substring(1, temp1.Length - 2);
+                                    temp1 = temp1.Replace("\"\"", "\"");
+                                    playerModel.Name = temp1;
+                                }
+                                else
+                                {
+                                    playerModel.Name = temp1; 
+                                }
                                 break;
                             case "Trøjesponsor:":
                                 playerModel.Sponsor = temp[j].Trim();
