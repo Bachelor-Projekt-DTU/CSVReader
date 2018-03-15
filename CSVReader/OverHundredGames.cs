@@ -37,14 +37,15 @@ namespace CSVReader
 
             foreach (var item in content)
             {
-                if (item.Trim() == "" || item.Trim() == "Navn,Periode,Kampe") continue;
+                if (item.Trim() == "" || item.Trim() == "Navn,Periode,Kampe,ID") continue;
                 csv = item.Split(",");
 
                 OverHundredGamesModel overHundredGamesModel = new OverHundredGamesModel();
 
                 overHundredGamesModel.Name = csv[0];
                 overHundredGamesModel.Period = csv[1];
-                overHundredGamesModel.Games = csv[2];
+                overHundredGamesModel.Games = Int32.Parse(csv[2]);
+                overHundredGamesModel.PlayerId = csv[3];
 
                 _realm.Write(() =>
                 {

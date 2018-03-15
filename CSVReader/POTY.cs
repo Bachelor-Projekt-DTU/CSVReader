@@ -11,7 +11,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void z(string[] args)
+        static void m(string[] args)
         {
             SetupRealm();
             while (true)
@@ -37,13 +37,14 @@ namespace CSVReader
 
             foreach (var item in content)
             {
-                if (item.Trim() == "" || item.Trim() == "Year,Name") continue;
+                if (item.Trim() == "" || item.Trim() == "Year,Name,ID") continue;
                 csv = item.Split(",");
 
                 POTYModel POTYModel = new POTYModel();
 
-                POTYModel.Year = csv[0];
-                POTYModel.Name = csv[1];
+                POTYModel.Year = csv[0].Trim();
+                POTYModel.Name = csv[1].Substring(1);
+                POTYModel.PlayerId = csv[2].Trim().Substring(0, csv[2].Trim().Length-1);
 
                 _realm.Write(() =>
                 {

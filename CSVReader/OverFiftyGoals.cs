@@ -11,7 +11,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void v(string[] args)
+        static void k(string[] args)
         {
             SetupRealm();
             while (true)
@@ -37,14 +37,22 @@ namespace CSVReader
 
             foreach (var item in content)
             {
-                if (item.Trim() == "" || item.Trim() == "Navn,Periode,Mål/Kampe") continue;
+                if (item.Trim() == "" || item.Trim() == "Navn,Periode,Mål/Kampe,ID") continue;
                 csv = item.Split(",");
 
                 OverFiftyGoalsModel overFiftyGoalsModel = new OverFiftyGoalsModel();
 
+                if (csv[0].Contains("\"")) {
+                    var temp = csv[0].Trim();
+                    overFiftyGoalsModel.Name = temp.Substring(1, temp.Length-2).Replace("\"\"", "\"");
+                }
+                else {
                 overFiftyGoalsModel.Name = csv[0];
+                }
                 overFiftyGoalsModel.Period = csv[1];
                 overFiftyGoalsModel.Goals_Games = csv[2];
+                overFiftyGoalsModel.PlayerId = csv[3];
+                overFiftyGoalsModel.Goals = Int32.Parse(overFiftyGoalsModel.Goals_Games.Split("/")[0].Trim('*'));
 
                 _realm.Write(() =>
                 {

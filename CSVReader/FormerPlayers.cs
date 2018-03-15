@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void Main(string[] args)
+        static void m(string[] args)
         {
             SetupRealm();
             while (true)
@@ -34,7 +34,7 @@ namespace CSVReader
                 _realm.RemoveAll();
             });
 
-            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Webscraping_Scripts\\formerplayers.csv").Split("::::");
+            var content = File.ReadAllText("C:\\Users\\Hadi\\Desktop\\Webscraping_Scripts\\formerplayers.csv").Split(",::::");
             string[] csv = new string[1];
             int i = 0;
             foreach (var item in content)
@@ -53,21 +53,32 @@ namespace CSVReader
                     {
                         switch (csv[j].Trim())
                         {
-                            case "Name,":
-                                var temp1 = temp[j].Substring(0, temp[j].Count() - 1).Trim();
-                                if(temp1.Contains(". "))
+                            case "Name":
+                                if (temp[j].Trim().Length > 0)
                                 {
-                                    playerModel.Name = temp1.Split(". ")[1];
-                                    playerModel.Number = temp1.Split(". ")[0];
-                                } else if (temp1.Length > 0 && temp1[0] == '\"')
-                                {
-                                    temp1 = temp1.Substring(1, temp1.Length - 2);
-                                    temp1 = temp1.Replace("\"\"", "\"");
-                                    playerModel.Name = temp1;
-                                }
-                                else
-                                {
-                                    playerModel.Name = temp1; 
+                                    var temp1 = temp[j].Trim();
+                                    if (temp1.Contains(". "))
+                                    {
+                                        try
+                                        {
+                                            playerModel.Name = temp1.Split(". ", 2)[1];
+                                            playerModel.Number = Int32.Parse(temp1.Split(". ", 2)[0]);
+                                        }
+                                        catch (Exception)
+                                        {
+                                            playerModel.Name = temp1;
+                                        }
+                                    }
+                                    else if (temp1.Length > 0 && temp1[0] == '\"')
+                                    {
+                                        temp1 = temp1.Substring(1, temp1.Length - 2);
+                                        temp1 = temp1.Replace("\"\"", "\"");
+                                        playerModel.Name = temp1;
+                                    }
+                                    else
+                                    {
+                                        playerModel.Name = temp1;
+                                    }
                                 }
                                 break;
                             case "Trøjesponsor:":
@@ -115,12 +126,18 @@ namespace CSVReader
                             case "ImageURL":
                                 playerModel.ImageURL = temp[j].Trim();
                                 break;
+                            case "ID":
+                                playerModel.Id = temp[j].Trim();
+                                break;
                         }
                     }
-                    _realm.Write(() =>
+                    if (playerModel.Name != null && playerModel.Name != "")
                     {
-                        _realm.Add(playerModel);
-                    });
+                        _realm.Write(() =>
+                        {
+                            _realm.Add(playerModel);
+                        });
+                    }
                 }
             }
             Console.WriteLine("Done");
