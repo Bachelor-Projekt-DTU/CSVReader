@@ -11,7 +11,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void vc(string[] args)
+        static void asda(string[] args)
         {
             SetupRealm();
             while (true)
@@ -45,7 +45,7 @@ namespace CSVReader
                 overHundredGamesModel.Name = csv[0];
                 overHundredGamesModel.Period = csv[1];
                 overHundredGamesModel.Games = Int32.Parse(csv[2]);
-                overHundredGamesModel.PlayerId = csv[3];
+                overHundredGamesModel.PlayerId = csv[3].Trim();
 
                 _realm.Write(() =>
                 {
