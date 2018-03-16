@@ -12,7 +12,7 @@ namespace CSVReader
     {
         static Realm _realm;
 
-        static void fds(string[] args)
+        static void Main(string[] args)
         {
             SetupRealm();
             while (true)
@@ -57,20 +57,20 @@ namespace CSVReader
                         var item5 = item4.Trim().Split(",");
                         try
                         {
-                            historicalStandingModel.TournamentName = tournamentName;
-                            historicalStandingModel.Year = item5[0];
-                            historicalStandingModel.Standing = item5[1];
-                            historicalStandingModel.Games = item5[2];
-                            historicalStandingModel.Wins = item5[3];
-                            historicalStandingModel.Draws = item5[4];
-                            historicalStandingModel.Losses = item5[5];
-                            historicalStandingModel.Score = item5[6];
-                            historicalStandingModel.Points = item5[7];
+                            historicalStandingModel.TournamentName = tournamentName.Trim();
+                            historicalStandingModel.Year = item5[0].Trim();
+                            historicalStandingModel.Standing = item5[1].Trim();
+                            historicalStandingModel.Games = item5[2].Trim();
+                            historicalStandingModel.Wins = item5[3].Trim();
+                            historicalStandingModel.Draws = item5[4].Trim();
+                            historicalStandingModel.Losses = item5[5].Trim();
+                            historicalStandingModel.Score = item5[6].Trim();
+                            historicalStandingModel.Points = item5[7].Trim();
                         }
                         catch (Exception)
                         {
-                            historicalStandingModel.Year = item5[0];
-                            historicalStandingModel.Other = item5[1];
+                            historicalStandingModel.Year = item5[0].Trim();
+                            historicalStandingModel.Other = item5[1].Trim();
                         }
                     }
                     _realm.Write(() =>
